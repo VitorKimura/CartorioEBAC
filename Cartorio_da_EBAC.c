@@ -12,6 +12,7 @@ int registro() //Registro de usuário
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	char resp;
 	
     printf("Digite o CPF a ser cadastrado: "); // início da criação das variaveis do registro
 	scanf("%s", cpf); //Salva a string
@@ -56,8 +57,35 @@ int registro() //Registro de usuário
 	fprintf(file, cargo);
 	fclose(file); //Fim da criação das variveis 
 	
-	system("pause");
-		
+	system("cls"); //limpa a tela
+	
+	printf ("O usuário foi adicionado com sucesso!\n");				        	    		
+	printf ("--------------------------------------\n");	
+	printf ("Deseja adicionar mais usuários? [S/N] "); //Perguntando se o usuário quer continuar
+	scanf (" %c", &resp); //Lendo a resposta do usuário
+	resp = toupper(resp); //Formatando a resposta para letra maiúscula
+	
+	if (resp == 'S') //Estrutura de condição caso "S"
+	{
+		system ("cls"); //LimpaTela
+		registro(); //Retornar a função REGISTRO
+	} //Fim da estrutura de condição caso "S"
+	if (resp == 'N') //Estrutura de condição caso "N"													
+	{																			
+		system ("cls"); //LimpaTela
+		printf ("Retornando ao menu...\n\n"); //Escrevendo na tela	
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim da condição caso "N"
+	if (resp != 'S' && resp != 'N') //Estrutura de condição caso a resposta seja diferente de "S" e de "N"										
+	{
+		system ("cls"); //LimpaTela
+		printf ("Comando inválido!\n"); 
+		printf ("Retornando ao menu...\n\n"); 
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim da condição caso resposta seja diferente de "S" e de "N"
+	
 }
 
 int consulta() //Consultar usuário
@@ -66,6 +94,7 @@ int consulta() //Consultar usuário
 	
 	char cpf[40];  // Definindo variaveis
 	char conteudo[200];
+	char resp;
 	
 	printf("Digite o cpf a ser consultado: ");//Coleta do cpf
 	scanf("%s", cpf); //Salva na string
@@ -86,9 +115,38 @@ int consulta() //Consultar usuário
 		printf("%s", conteudo);
 		printf("\n\n");
 	}
-	
-	system("pause");
+
 	fclose(file);
+	
+	printf ("\n");
+	printf ("-------------------------------------\n");
+	printf ("Deseja consultar outro usuário? [S/N] "); //Perguntando ao usuário
+	scanf (" %c", &resp); //Lendo resposta
+	resp = toupper(resp); //Formatando resposta do usuário para letra maiúcula
+	
+	if (resp == 'S') //Condição SE resposta = "S"
+	{ //Início condição
+		system ("cls"); //LimpaTela
+		consulta(); //Retornar a função CONSULTA
+	} //Fim condição
+	
+	if (resp == 'N') //Condição SE resposta = "N"																		
+	{ //Início condição
+		system ("cls"); //LimpaTela						
+		printf ("Retornando ao menu...\n\n"); //Escrevendo na tela do usuário
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim condição
+	
+	if (resp != 'S' && resp != 'N') //Condição SE resposta <> "S" e "N"
+	{ //Início condição
+		system ("cls"); //LimpaTela	
+		printf ("Comando inválido!\n"); //Escrevendo na tela do usuário
+		printf ("Retornando ao menu...\n\n"); //Escrevendo na tela do usuário
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim condição
+		
 }
 
 int deletar() //Deletar usuário
@@ -96,6 +154,7 @@ int deletar() //Deletar usuário
 	setlocale(LC_ALL,"portuguese"); //Definindo a Linguagem
 	
 	char cpf[40]; //Definação da variavel
+	char resp;
 	
 	printf("Digite o cpf do usuário a ser deletado: "); //coleta de cpf 
 	scanf("%s", cpf);
@@ -113,9 +172,35 @@ int deletar() //Deletar usuário
 	{
 		remove(cpf); //Se for deletado 
 		printf("Usuário deletado com sucesso! \n");
-		system("pause");
-		
 	}
+	
+	printf ("----------------------------------\n");
+	printf ("Deseja deletar outro usuário? [S/N] "); //Perguntando ao usuário
+	scanf (" %c", &resp); //Lendo resposta
+	resp = toupper(resp); //Formatando resposta para letra maiúscula
+	
+	if (resp == 'S') //Condição Se resp2 = "S"
+	{ //Início condição
+		system ("cls"); //LimpaTela
+		deletar(); //Retornar função DELETAR
+	} //Fim condição
+	
+	if (resp == 'N') //Condição Se = "N"
+	{ //Início condição
+		system ("cls"); //LimpaTela
+		printf ("Retornando ao menu...\n\n"); //Escrevendo na tela
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim condição
+	
+	if (resp != 'S' && resp != 'N') //Se diferente de "S" e de "N"
+	{ //Início condição
+		system ("cls"); //LimpaTela
+		printf ("Comando Inválido!\n"); //Escrevendo na tela
+		printf ("Retornando ao menu...\n\n"); //Escrevendo na tela
+		system ("pause"); //Pausando
+		main(); //Retornando função PRINCIPAL
+	} //Fim condição
 	
 }
 
